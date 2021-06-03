@@ -45,6 +45,9 @@ def get_auth_headers(delete_token=False):
 
 def parse_file(filename):
     # TODO: read file contents and parse to extract urls
+    
+    # usual files are in this format
+    # url <space> filename.ext.<number>
     if not os.path.exists(filename):
         print('File \'{}\' not found.'.format(filename))
         sys.exit(1)
