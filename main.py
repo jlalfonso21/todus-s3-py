@@ -11,6 +11,33 @@ pars.add_argument(
     help="The path where the files should be saved, by default is current directory.")
 
 location = os.getcwd()
+headers = {}
+
+
+def get_auth_headers(delete_token=False):
+    # TODO: get auth headers
+    # TODO: store auth token in file at user $HOME (filename = `.s3_token`)
+    # below a prototype of final code for auth
+
+    # tokenfile = os.path.join(os.path.expanduser('~'), '.s3_token')
+
+    # # If necesary to update the token, remove old from file
+    # if delete_token:
+    #     os.remove(tokenfile)
+
+    # if os.path.isfile():
+    #     with open(tokenfile, 'r') as f:
+    #         headers['Authorization'] = 'Bearer {}'.format(
+    #             f.read())  # change with actual token response data
+    # res = requests.post('API AUTH URL', data={
+    #     'username': 'admin', 'password': 'admin'})
+    # if res.status_code == 200:  # change with the actual HTTP CODE that returns that request
+    #     headers['Authorization'] = 'Bearer {}'.format(
+    #         res.content)  # change with actual token response data
+    #     with open(tokenfile, 'wb') as f:
+    #         # write the content of the token to the file
+    #         f.write(res.content)
+    pass
 
 
 def parse_file(filename):
@@ -85,6 +112,6 @@ def parse_args():
 
 if __name__ == '__main__':
     parse_args()
-    link = "http://media.cubadebate.cu/wp-content/uploads/2021/03/matanzas06-580x355.jpg" # TEST URL
+    link = "http://media.cubadebate.cu/wp-content/uploads/2021/03/matanzas06-580x355.jpg"  # TEST URL
     # download_file(link)
     print(os.getcwd())
