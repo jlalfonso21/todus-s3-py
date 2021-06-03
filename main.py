@@ -3,6 +3,8 @@ import requests
 import sys
 import argparse
 
+from requests.api import get
+
 pars = argparse.ArgumentParser()
 pars.add_argument(
     "filepath", help="The path to the file containing the urls")
@@ -29,6 +31,7 @@ def get_auth_headers(delete_token=False):
     #     with open(tokenfile, 'r') as f:
     #         headers['Authorization'] = 'Bearer {}'.format(
     #             f.read())  # change with actual token response data
+    #             return
     # res = requests.post('API AUTH URL', data={
     #     'username': 'admin', 'password': 'admin'})
     # if res.status_code == 200:  # change with the actual HTTP CODE that returns that request
@@ -79,7 +82,12 @@ def get_request_filename(res):
 
 
 def download_file(url):
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, headers=headers)
+
+    # Dont know why they use a 400 error for a not authorized error ...
+    if response.status_code == 400:  # is Bad Request
+        get_auth_headers(delete_token=True)
+
     filename = get_request_filename(response)
 
     with open(location + '/' + filename, "wb") as f:
@@ -112,6 +120,7 @@ def parse_args():
 
 if __name__ == '__main__':
     parse_args()
+    get_auth_headers()
     link = "http://media.cubadebate.cu/wp-content/uploads/2021/03/matanzas06-580x355.jpg"  # TEST URL
     # download_file(link)
     print(os.getcwd())
