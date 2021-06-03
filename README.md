@@ -7,7 +7,7 @@ $ python -m venv venv
 $ source venv/bin/activate
 ```
 
-- Install dependencias (recommended a virtualenv)
+- Install dependencies (recommended a virtualenv)
 ```
 $ pip install -r requirements.txt
 ```
